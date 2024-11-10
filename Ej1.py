@@ -13,9 +13,11 @@ def calcularPrimo():
     primos = []
     for i in range (100):
         if(es_primo(i)):
-            primos.append(i)
+            with lock:
+                primos.append(i)
 
 
+lock = threading.Lock()
 hilos = []
 for i in range (10):
     hilo = threading.Thread(target=calcularPrimo)
